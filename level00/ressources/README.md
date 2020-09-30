@@ -1,24 +1,25 @@
 #EXPLICATIONS
 
-In the presentation video of the project we can see in the README that we have
-to find the first file who can run only as flag00.
+Dans la video de presentation du projet on voit dans le README qu'on doit
+trouver le fichier qui peut etre run en tant que flag00.
 
-Find all the user flag00 files, and redirect/hide errors messages:
-- find / -user "flag00" 2>/dev/null
+level00@SnowCrash:~$ find / -user flag00 2>/dev/null
+/usr/sbin/john
+/rofs/usr/sbin/john
 
-Display what contain the results:
-- cat /usr/sbin/john
+On affiche ensuite le contenu du fichier john:
 
-We got : cdiiddwpgswtgt
+level00@SnowCrash:~$ cat /usr/sbin/john
+cdiiddwpgswtgt
 
-No numbers only letters, look like a Caesar hash.
-Dcode.fr -> Caesar code -> decode and test all the offsets to find it.
-First result : "nottoohardhere", seems to be the password, we gonna test it.
+Aucun nombre, que des lettres cela ressemble a un cryptage type ROT/Caesar.
+Dcode.fr -> Caesar code -> On decode en testant tout les decalages possibles.
+Premier resultat affiche: "nottoohardhere", nous allons tester.
 
-- su flag00
-Password : nottoohardhere
+level00@SnowCrash:~$ su flag00
+Password:
+Don't forget to launch getflag !
+flag00@SnowCrash:~$ getflag
+Check flag.Here is your token : x24ti5gi3x0ol2eh4esiuxias
 
-- getflag
-We have the flag : x24ti5gi3x0ol2eh4esiuxas
-Go to the next level!
-
+Next level..
