@@ -1,0 +1,24 @@
+#LEVEL02
+
+Dans le dossier home nous trouvons un fichier level02.pcap, un coup de Google
+nous permet de decouvrir que fichier s'ouvre avec Wireshark, un logiciel
+d'analyse de paquets qui nous possedons sur la VM Kali.
+
+$> scp '-P4242' level02@IP.snowcrash.vm:/home/user/level02/level02.pcap /directory/you/want
+
+Nous ouvrons le fichier, et constatons dans les donnees du #43 le mot : Password, nous allons donc
+analyser toutes les donnees des paquets suivant et nous recuperons :
+-> 66 74 5f 77 61 6e 64 72 7f 7f 7f 4e 44 52 65 6c 7f 4c 30 4c
+
+Ce qui semble etre la suite de touches entrees sur un clavier.
+On obtient donc en convertissant cela : ft_wandr...NDRel.L0L
+Les '.' remplacent le 7f qui qui lui correspond a la touche DEL.
+On applique cela a la chaine et on obtient : ft_waNDReL0L
+
+level02@SnowCrash:~$ su flag02
+Password:
+Don't forget to launch getflag !
+flag02@SnowCrash:~$ getflag
+Check flag.Here is your token : kooda2puivaav1idi4f57q8iq
+
+Next level..
