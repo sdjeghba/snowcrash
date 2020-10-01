@@ -1,0 +1,56 @@
+#LEVEL 09
+
+Nous avons dans le home un executable level09 et un fichier token contenant :
+
+level09@SnowCrash:~$ cat token
+f4kmm6p|=�p�n��DB�Du{��
+
+Lorsque l'on execute ./level09 token nous obtenons :
+
+level09@SnowCrash:~$ ./level09 token
+tpmhr
+
+L'executable semble hasher le nom de l'argument et non le contenu du fichier:
+
+level09@SnowCrash:~$ ./level09 aaaaaaaa
+abcdefgh
+
+La fonction de hash semble additionner le char et sa position, exemple:
+
+level09@SnowCrash:~$ ./level09 ab
+ac
+level09@SnowCrash:~$ ./level09 13
+14
+
+Nous allons donc coder une petite fonction pour reverse le hash, qui doit etre
+contenu dans le fichier token.
+
+int main(int ac, char **av)
+{
+	int	i = -1;
+	char c = 0;
+
+	while (av[1][++i]) {
+		c = av[1][i];
+		printf("%c", (c - i));
+	}
+	return (0);
+}
+
+Nous compilons puis executons tout ca:
+
+level09@SnowCrash:/tmp$ gcc main.c -o script
+level09@SnowCrash:/tmp$ ./script $(cat /home/user/level09/token)
+f3iji1ju5yuevaus41q1afiuqlevel09@SnowCrash:/tmp$
+
+Le mot de passe obtenu ne fonctionne pas en flag, mais ils fonctionne en
+password, nous l'utilisons pour pouvoir recuperer le flag.
+
+level09@SnowCrash:/tmp$ su flag09
+Password:
+Don't forget to launch getflag !
+flag09@SnowCrash:~$ getflag
+Check flag.Here is your token : s5cAJpM8ev6XHw998pRWG728z
+
+Next level..
+

