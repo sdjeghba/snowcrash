@@ -1,0 +1,35 @@
+#LEVEL 12
+
+
+Nous avons un fichier level12.pl, un script perl servi par un serveur web.
+Nous avons cette information grace aux CGI.
+
+Dans la subroutine t, nous avons dans $xx un premier changement applique, la
+regex transforme toutes les minuscules en majuscule, puis dans un second tete
+la 2eme regex supprime tout ce qui suit un espace.
+L'opérateur =~ applique la recherche à la chaîne placée à gauche
+
+Ensuite ce qui nous interesse ici c'est les backtiks (``) qui vont nous
+permettre d'executer du code.
+Nous ne pouvons pas lui envoyer la commande getflag directement puisque le
+script transforme toutes les minuscules en majuscule et donc GETFLAG ne passera
+pas.
+
+Nous allons donc utiliser une wildcard qui va nous permettre d'acceder a notre
+script au nom unique pour que cela fonctionne, puis notre script se chargera
+de lancer la commande getflag une fois lance, et nous donnons les droits a
+notre script pour qu'il puisse etre execute.
+
+level12@SnowCrash:/tmp$ cat /tmp/SCRIPT
+#!/bin/sh
+getflag > /tmp/flag12
+
+level12@SnowCrash:/tmp$ chmod +x /tmp/SCRIPT
+
+On lance maintenant desormais curl:
+
+level12@SnowCrash:/tmp$ curl 192.168.1.81:4646?x='`/*/script`'
+..level12@SnowCrash:/tmp$ cat /tmp/flag12
+Check flag.Here is your token : g1qKMiRpXf53AWhDaU7FEkczr
+
+Next level...

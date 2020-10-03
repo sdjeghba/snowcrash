@@ -9,14 +9,14 @@ level11@SnowCrash:~$ nc 127.0.0.1 5151
 Password:
 
 Un prompt apparait et un mot de passe nous est demande.
-La fonction qui nous interesse ici est io.popen qui nous permet de lancer un
-processus, nous allons lui faire executer la commande getflag.
+La fonction qui nous interesse ici est io.popen qui nous permet d'executer un
+programme, nous allons lui faire executer la commande getflag.
 
 io.popen ici effectue un echo de 'pass', pass qui est le password que nous
-auront entrer dans le prompteur..
+auront entrer dans le prompteur et le hash avec sha1sum.
 
 Nous allons donc lui demande d'echo getflag, puis de nous le stocker dans un
-fichier:
+fichier.
 
 Password: $(/bin/getflag) > /tmp/flag
 Erf nope..
