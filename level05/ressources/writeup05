@@ -8,11 +8,11 @@ level05@SnowCrash:~$ find / -user flag05 2>/dev/null
 /rofs/usr/sbin/openarenaserver
 
 On onvre le fichier openarenaserver et nous y trouvons un petit script bash
-qui execute tout les fichier dans /opt/openarenaserver puis les supprimes.
+qui execute tout les fichiers dans /opt/openarenaserver puis les supprimes.
 Nous allons lui faire executer getflag.
-Nous n'avons pas les droits d'execution pour lancer nous meme, nous allons donc
+Nous n'avons pas les droits d'execution pour le lancer manuellement, nous allons donc
 faire un script qui nous recuperera l'echo du getflag dans un fichier, puis
-nous patienterons et laisseront le script faire.
+nous patienterons et laisseront le binaire faire.
 
 level05@SnowCrash:/usr/sbin$ echo '/bin/getflag > /tmp/flag' > /opt/openarenaserver/script
 
