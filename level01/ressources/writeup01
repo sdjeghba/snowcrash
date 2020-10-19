@@ -4,13 +4,13 @@ Nous avons les droits de lecture sur le fichier /etc/passwd qui contient des
 informations relatives aux users.
 
 A la ligne concernant le flag01 nous trouvons : 42hDRfypTqqnw
-Nous recuperons le fichier /etc/passwd pour lancer John via la VM Kali.
+Nous récuperons le fichier /etc/passwd pour lancer John via la VM Kali.
 
 $> scp '-P4242' level01@IP.snowcrash.vm:/etc/passwd /directory/you/want
 
 $> john --show passwd
 
-Nous recuperons le mot de passe 'abcdefg';
+Nous récuperons le mot de passe 'abcdefg';
 
 level01@SnowCrash:~$ su flag01
 Password:
