@@ -3,7 +3,7 @@
 Nous avons dans le home un executable level07 avec les setuid.
 
 On effectue un ltrace sur level07 et on observe un getenv de LOGNAME puis
-la commande system est appelee avec un echo de level07
+la commande system est appelée avec un echo de level07
 En consultant cette variable d'environnement on y trouve 'level07'.
 
 level07@SnowCrash:~$ LOGNAME=hello
@@ -18,4 +18,3 @@ level07@SnowCrash:~$ ./level07
 Check flag.Here is your token : fiumuikeil55xe9cu4dood66h
 
 Next level..
-
