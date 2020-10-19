@@ -6,7 +6,7 @@ d'analyse de paquets qui nous possedons sur la VM Kali.
 
 $> scp '-P4242' level02@IP.snowcrash.vm:/home/user/level02/level02.pcap /directory/you/want
 
-Nous ouvrons le fichier, et constatons dans les donnees du #43 le mot : Password, nous allons donc
+Nous ouvrons le fichier, et constatons dans les donnees du paquet 43 le mot : Password, nous allons donc
 analyser toutes les donnees des paquets suivant et nous recuperons :
 -> 66 74 5f 77 61 6e 64 72 7f 7f 7f 4e 44 52 65 6c 7f 4c 30 4c
 

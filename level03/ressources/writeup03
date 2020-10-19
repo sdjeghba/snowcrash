@@ -14,7 +14,7 @@ Avec ltrace, on constate un appel a la fonction system qui lui va lancer un
 echo "Exploit me" via le chemin de la variable d'environnement
 
 Nous allons utiliser les setuid du binaire ici present pour lui faire executer
-getflag. Nous allons creer un script que nous nommerons echo apres compilation,
+getflag. Nous allons creer un binaire que nous nommerons echo apres compilation,
 puis nous modifieront le PATH dans l'environnement du reel echo par le notre.
 
 Nous compilons notre petit programme en C qui ne fait rien d'autre qu'un appel

