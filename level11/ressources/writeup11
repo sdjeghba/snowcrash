@@ -8,8 +8,8 @@ nous connecter sur le serveur.
 level11@SnowCrash:~$ nc 127.0.0.1 5151
 Password:
 
-Un prompt apparait et un mot de passe nous est demande.
-La fonction qui nous interesse ici est io.popen qui nous permet d'executer un
+Un prompt apparait et un mot de passe nous est demandé.
+La fonction qui nous intéresse ici est io.popen qui nous permet d'executer un
 programme, nous allons lui faire executer la commande getflag.
 
 io.popen ici effectue un echo de 'pass', pass qui est le password que nous
