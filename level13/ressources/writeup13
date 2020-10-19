@@ -37,8 +37,8 @@ End of assembler dump.
 On observe ici en <+14> qu'un cmp est effecute entre eax qui contient l'uid
 recuperer et $0x1092, autrement dit 4242.
 Dans le cas ou les deux uid seraient les memes on jump a <+63>.
-Ce que nous allons faire est tres simple, nous allons passer outre cette
-verification et jumper manuellement.
+Ce que nous allons faire est très simple, nous allons passer outre cette
+vérification et jumper manuellement.
 
 (gdb) break *0x0804859a
 Breakpoint 1 at 0x804859a
