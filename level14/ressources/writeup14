@@ -2,16 +2,16 @@
 
 Nous n'avons aucun fichier exploitable dans le home, ni null par ailleurs apres
 plusieurs recherches possible avec tout les find possible.
-Il ne nous reste plus qu'a nous pencher sur la commande getflag en elle meme.
+Il ne nous reste plus qu'à nous pencher sur la commande getflag en elle meme.
 
-Nous allons l'etudier avec gdb, les premieres lignes qui nous interessent:
+Nous allons l'étudier avec gdb, les premières lignes qui nous interessent:
 
    0x08048989 <+67>:	call   0x8048540 <ptrace@plt>
    0x0804898e <+72>:	test   %eax,%eax
 
 Une premiere verification est faite au niveau de ptrace, qui retournera -1
-puisque nous sommes en mode debugage, ptrace est deja utiliser par gdb et il ne
-peut etre utilise qu'une seule fois en simultane sur un executable.
+puisque nous sommes en mode debugage, ptrace est déjà utiliser par gdb et il ne
+peut etre utilisé qu'une seule fois en simultané sur un executable.
 
 Puis ce qui nous interesse vraiment arrive:
 
@@ -59,15 +59,15 @@ Puis ce qui nous interesse vraiment arrive:
    0x08048bc6 <+640>:	mov    0x804b060,%eax
 
 Nous avons ici un call a getuid, puis ensuite une serie de comparaison entre
-l'uid recuperer et des valeurs fixe, suivi de jump.
+l'uid récuperer et des valeurs fixe, suivi de jump.
 Celle qui nous interesse est 0xbc6, qui correspond donc a 3014 qui est l'id de
-notre user, et nous avons different jump en fonction des id..
+notre user, et nous avons différent jump en fonction des id..
 
 level14@SnowCrash:/etc$ id flag14
 uid=3014(flag14) gid=3014(flag14) groups=3014(flag14),1001(flag)
 
 Nous allons donc break avant le tout premier check de ptrace, puis on va jump
-a l'endroit ou l'on devrait etre si nous avions tout les droits et le bon id.
+a l'endroit ou l'on devrait être si nous avions tout les droits et le bon id.
 
 (gdb) break *0x0804898e
 Breakpoint 1 at 0x804898e
