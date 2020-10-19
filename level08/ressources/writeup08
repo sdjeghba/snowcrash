@@ -15,9 +15,9 @@ level08@SnowCrash:~$ ./level08 /tmp/txt
 yoooo
 
 
-Un ltrace sur ./level08 token nous permet de nous rendre compte qu'un strstr
-est utilise est que celui-ci compare le nom du fichier avec token, nous pouvons
-affirmer cela car nous avons effectue la meme manipulation que precedemment
+Un ltrace sur ./level08 token nous permet de nous rendre compte qu'un appel à strstr
+est effectué est que celui-ci compare le nom du fichier avec 'token', nous pouvons
+affirmer cela car nous avons effectué la meme manipulation que précedemment
 mais avec un fichier portant le nom token et cela ne fonctionne pas.
 
 level08@SnowCrash:~$ echo ne marche pas > /tmp/token
@@ -26,8 +26,8 @@ You may not access '/tmp/token'
 
 La comparaison s'effectue donc entre le nom du fichier et pas son contenu, avec
 le mot 'token'.
-Nous allons creer un lien symbolique qui pointe vers ce fichier pour consulter
-son contenu et passe outre la verification du nom de fichier.
+Nous allons créer un lien symbolique qui pointe vers ce fichier pour consulter
+son contenu et passé outre la vérification du nom de fichier.
 
 level08@SnowCrash:~$ ln -s /home/user/level08/token /tmp/symlink
 level08@SnowCrash:~$ ./level08 /tmp/symlink
