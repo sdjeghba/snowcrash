@@ -1,6 +1,6 @@
 #LEVEL 03
 
-Nous avons trouve un binaire level03 dans le home avec les setuid.
+Nous avons un binaire level03 dans le home avec les setuid.
 
 level03@SnowCrash:~$ ltrace ./level03
 __libc_start_main(0x80484a4, 1, 0xbffff7a4, 0x8048510, 0x8048580 <unfinished ...>
@@ -13,9 +13,9 @@ system("/usr/bin/env echo Exploit me"Exploit me
 Avec ltrace, on constate un appel a la fonction system qui lui va lancer un
 echo "Exploit me" via le chemin de la variable d'environnement
 
-Nous allons utiliser les setuid du binaire ici present pour lui faire executer
-getflag. Nous allons creer un binaire que nous nommerons echo apres compilation,
-puis nous modifieront le PATH dans l'environnement du reel echo par le notre.
+Nous allons utiliser les setuid du binaire ici présent pour lui faire executer
+getflag. Nous allons créer un binaire que nous nommerons echo apres compilation,
+puis nous modifieront le PATH dans l'environnement du réel echo par le notre.
 
 Nous compilons notre petit programme en C qui ne fait rien d'autre qu'un appel
 a system qui lui lance /bin/getflag.
@@ -28,7 +28,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
 
 par : PATH=/tmp/
 
-Nous n'avons plus qu'a relancer notre binaire:
+Nous n'avons plus qu'à relancer notre binaire:
 
 level03@SnowCrash:~$ ./level03
 Check flag.Here is your token : qi0maab88jeaj46qoumi7maus
