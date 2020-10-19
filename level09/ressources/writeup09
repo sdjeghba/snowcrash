@@ -22,7 +22,7 @@ ac
 level09@SnowCrash:~$ ./level09 13
 14
 
-Nous allons donc coder une petite fonction pour reverse le hash, qui doit etre
+Nous allons donc coder une petite fonction pour reverse le hash, qui doit être
 contenu dans le fichier token.
 
 int main(int ac, char **av)
@@ -53,4 +53,3 @@ flag09@SnowCrash:~$ getflag
 Check flag.Here is your token : s5cAJpM8ev6XHw998pRWG728z
 
 Next level..
-
