@@ -1,10 +1,11 @@
-# SNOWCRASH
+# snowcrash
 
-<p>Ce projet a pour but de vous faire découvrir, via plusieurs petits challenges,
-la sécurité en informatique dans plusieurs domaines.</p>
+Ce projet a pour but de vous faire découvrir, via plusieurs petits challenges,
+la sécurité en informatique dans plusieurs domaines.
 
 Les méthodes que vous allez utiliser, plus ou moins complexes, vous feront voir
 différemment l’informatique en général.
+
 Durant ce projet, vous allez surement rencontrer des difficultés :
 soyons clairs, ces difficultés, il faut que vous les dépassiez de vous-même.
 Il faut que votre approche des différentes épreuves vienne vraiment et
