@@ -3,17 +3,17 @@
 Nous avons dans le fichier home un binaire level06 et un fichier level06.php.
 
 La fonction x est celle qui nous interesse.
-Elle recupere le contenu du fichier $y passe en parametre qui doit etre au format : [x allchars]
+Elle récupere le contenu du fichier $y passé en parametre qui doit etre au format : [x allchars]
 et le change au format y("("")");
 
-le 'e' dans la regex est useless, dans les versions recente il est remplace par
-preg_replace_callback, qui remplace la string trouvee par le resultat de la
-fonction appelee.
+le 'e' dans la regex est useless, dans les versions récentes il est remplace par
+preg_replace_callback, qui remplace la string trouvée par le resultat de la
+fonction appelée.
 
 exemple: preg_replace("/k/e", "exec('echo tsu'), "kaka");
 result = tsuatsua;
 
-Nous allons donc faire executer getflag a level06 qui est setuid en lui envoyant
+Nous allons donc faire executer getflag à level06 qui est setuid en lui envoyant
 un fichier avec la regex au format qu'il souhaite.
 
 level06@SnowCrash:~$ echo '[x exec(getflag)]' > /tmp/script
