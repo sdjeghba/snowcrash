@@ -2,23 +2,23 @@
 
 
 Nous avons un fichier level12.pl, un script perl servi par un serveur web.
-Nous avons cette information grace aux CGI.
+Nous avons cette information grâce aux CGI.
 
-Dans la subroutine t, nous avons dans $xx un premier changement applique, la
-regex transforme toutes les minuscules en majuscule, puis dans un second tete
+Dans la subroutine 't', nous avons dans $xx un premier changement appliqué, la
+regex transforme toutes les minuscules en majuscules, puis dans un second temps
 la 2eme regex supprime tout ce qui suit un espace.
 L'opérateur =~ applique la recherche à la chaîne placée à gauche
 
 Ensuite ce qui nous interesse ici c'est les backtiks (``) qui vont nous
 permettre d'executer du code.
 Nous ne pouvons pas lui envoyer la commande getflag directement puisque le
-script transforme toutes les minuscules en majuscule et donc GETFLAG ne passera
+script transforme toutes les minuscules en majuscules et donc GETFLAG ne passera
 pas.
 
-Nous allons donc utiliser une wildcard qui va nous permettre d'acceder a notre
+Nous allons donc utiliser une wildcard qui va nous permettre d'accéder a notre
 script au nom unique pour que cela fonctionne, puis notre script se chargera
-de lancer la commande getflag une fois lance, et nous donnons les droits a
-notre script pour qu'il puisse etre execute.
+de lancer la commande getflag une fois éxecuter, et nous donnons les droits a
+notre script pour qu'il puisse etre executé.
 
 level12@SnowCrash:/tmp$ cat /tmp/SCRIPT
 #!/bin/sh
