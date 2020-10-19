@@ -10,9 +10,9 @@ level04@SnowCrash:~$ find / -user flag04 2>/dev/null
 /rofs/var/www/level04/level04.pl
 
 Nous avons un script perl qui utilise CGI (Common Gateway Interface), donc un
-serveur web sur le port 4747 comme preciser dans le script.
-Le programme est execute cote serveur et la subroutine 'x' nous renvoi un echo
-de l'argument 'x' passe en parametre.
+serveur web sur le port 4747 comme préciser dans le script.
+Le programme est executé cote serveur et la subroutine 'x' nous renvoi un echo
+de l'argument 'x' passé en parametre.
 
 Vu que le programme a les setuid nous allons lui envoyer la commande getflag.
 
